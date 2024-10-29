@@ -34,11 +34,6 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 ```
 
 1. Após a instalação do NVM, feche e reabra o terminal do Ubuntu.
-2. Instale a versão mais recente do Node.js com o comando:
-
-```bash
-nvm install node
-```
 
 **Recomendação**: Para este tutorial, sugiro a versão 20.18 do Node.js. Para instalá-la, execute:
 
