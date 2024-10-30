@@ -94,6 +94,41 @@ pm2 start npm --name "minha-app" -- start
 
 Sua aplicação agora está sendo gerenciada pelo PM2!
 
+## Passo 5: Espelhando a porta do WSL
+
+Agora vamos liberar e espelhar a porta do seu WSL. Primeiro use o seguinte comando:
+
+```bash
+sudo apt install ufw
+```
+
+Após isso vamos liberar a porta `8096` como exemplo:
+
+```bash
+sudo ufw allow 8096/tcp
+```
+
+Não esqueca de liberar todas as portas que você for utilizar.
+
+Agora no Windows crie um arquivo .bat e cole o seguinte conteudo dentro dele:
+
+```bash
+@echo off
+for /f "tokens=*" %%i in ('wsl -d Ubuntu hostname -I') do set ip_wsl=%%i
+
+REM Remove redirecionamentos existentes para as portas especificadas
+netsh interface portproxy delete v4tov4 listenport=8096
+
+REM Adiciona novos redirecionamentos para as portas especificadas
+netsh interface portproxy add v4tov4 listenaddress=0.0.0.0 listenport=8096 connectaddress=%ip_wsl% connectport=8096
+
+echo Redirecionamento de portas configurado com sucesso para IP %ip_wsl%
+pause
+
+```
+
+No exemplo acima estou espelhando a porta 8096 do meu computador com a porta 8096 do WSL. E como não é possivel deixar o ip do WSL fixo, esse .bat serve para toda vez que o ip mudar vc apenas executar ele e pronto. Eu recomendo que faça o seu computador executar esse .bat toda vez que inicilizar o sistema.
+
 ## Comandos Úteis do PM2
 
 ### Monitoramento em Tempo Real
