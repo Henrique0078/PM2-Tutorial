@@ -25,6 +25,29 @@ Após a instalação do WSL, atualize o sistema com o seguinte comando:
 sudo apt update && sudo apt upgrade
 ```
 
+Caso de algum erro faça o seguinte passo a passo:
+
+Va até esse arquivo:
+```bash
+sudo nano /etc/resolv.conf
+```
+
+Adicione isto no fim do arquivo:
+
+```text
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+```
+Salve e feche o arquivo (pressione CTRL + X, depois Y e Enter).
+
+E reinicie o wsl usando o seguinte comando no CMD do seu windows:
+
+```bash
+wsl --shutdown
+```
+
+E agora abra o wsl novamente e estará arrumado o problema.
+
 ## Passo 2: Instalando o NVM (Node Version Manager)
 
 Para gerenciar diferentes versões do Node.js, vamos instalar o NVM:
