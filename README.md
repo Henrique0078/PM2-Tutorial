@@ -37,6 +37,7 @@ Adicione isto no fim do arquivo:
 ```text
 nameserver 8.8.8.8
 nameserver 8.8.4.4
+nameserver 1.1.1.1
 ```
 Salve e feche o arquivo (pressione CTRL + X, depois Y e Enter).
 
